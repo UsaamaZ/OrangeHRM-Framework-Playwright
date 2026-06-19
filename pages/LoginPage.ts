@@ -21,10 +21,8 @@ export class LoginPage {
 
     async login(user: string, pass: string) {
 
-        await this.username.pressSequentially(user, { delay: 300 });
-        await this.password.pressSequentially(pass, { delay: 300 });
+        await this.username.pressSequentially(user, { delay: 100 });
+        await this.password.pressSequentially(pass, { delay: 100 });
         await this.loginBtn.click();
-        await this.page.getByRole('link', { name: /pim/i });
-
     }
 }
