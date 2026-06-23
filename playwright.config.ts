@@ -1,39 +1,54 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig } from '@playwright/test';
+import 'dotenv/config';
 
 export default defineConfig({
-  testDir: './',
+  testDir: './tests',
+
   fullyParallel: true,
+
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: [['html', { open: 'never' }]],
+
+  reporter: [
+    ['html', { open: 'never' }]
+  ],
 
   use: {
     baseURL: 'https://opensource-demo.orangehrmlive.com',
+
     trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
 
   projects: [
     {
-      name: 'chromium',
-      use: {
+      name: 'setup',
 
-        browserName: 'chromium',
-        viewport: null,
-        launchOptions: {
-          args: ['--start-maximized'],
-        }
-      },
+      testDir: './auth',
+
+      testMatch: /auth\.setup\.ts/,
     },
 
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'] },
-    // },
+    {
+      name: 'chromium',
 
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'] },
-    // },
+      testDir: './tests',
+
+      use: {
+        browserName: 'chromium',
+
+        viewport: null,
+
+        launchOptions: {
+          args: ['--start-maximized']
+        },
+
+        storageState: 'playwright/.auth/admin.json',
+      },
+
+      dependencies: ['setup'],
+    },
   ],
 });
