@@ -1,0 +1,5 @@
+✓ Login form found
+✓ Username entered
+✓ Password entered
+✓ Login completed
+Current URL after login: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login

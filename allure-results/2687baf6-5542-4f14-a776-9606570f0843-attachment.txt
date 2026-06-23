@@ -1,0 +1,4 @@
+✓ Username filled
+✓ Password filled
+✓ Login button clicked
+✓ Page loaded after login

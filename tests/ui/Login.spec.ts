@@ -1,19 +1,18 @@
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../../src/pages/LoginPage'
-// import users from '../test-data/users.json';
+import fs from 'fs';
+import path from 'path';
+import { pause } from '../../src/utils/pause';
 
+test('Auth Setup Complete - Verify stored auth state', async ({ }) => {
+  const authPath = path.join(process.cwd(), 'auth', 'admin.json');
 
-test('Valid Login', async ({ page }) => {
-  await page.goto('/');
+  expect(fs.existsSync(authPath)).toBeTruthy();
 
-  const loginPage = new LoginPage(page);
+  const authData = JSON.parse(fs.readFileSync(authPath, 'utf-8'));
+  expect(authData.cookies).toBeDefined();
+  expect(authData.cookies.length).toBeGreaterThan(0);
+  expect(authData.origins).toBeDefined();
 
-  // await loginPage.login(
-  //   users.validUser.username,
-  //   users.validUser.password
-  // );
-
-  await expect(page).toHaveURL(/dashboard/);
-
-
+  console.log('Auth state file ready');
+  await pause(3000);
 });

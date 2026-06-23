@@ -1,43 +1,45 @@
-import { defineConfig } from '@playwright/test';
-import 'dotenv/config';
+import { defineConfig, devices } from '@playwright/test';
+import path from 'path';
+import fs from 'fs';
+import { ENV } from './src/config/env';
+
+// Resolve the absolute path to auth state file
+const authStatePath = path.resolve(process.cwd(), ENV.authStatePath);
 
 export default defineConfig({
   testDir: './tests',
 
-  fullyParallel: true,
+  globalSetup: require.resolve('./src/setup/global.setup.ts'),
+
+  fullyParallel: false,
 
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  workers: 1,
+
+  timeout: ENV.defaultTimeout,
 
   reporter: [
-    ['html', { open: 'never' }]
+    ['html', { open: 'never' }],
+    ['allure-playwright'],
   ],
 
   use: {
-    baseURL: 'https://opensource-demo.orangehrmlive.com',
+    baseURL: ENV.baseUrl,
 
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
+
+    actionTimeout: ENV.defaultTimeout,
   },
 
   projects: [
     {
-      name: 'setup',
-
-      testDir: './auth',
-
-      testMatch: /auth\.setup\.ts/,
-    },
-
-    {
       name: 'chromium',
 
-      testDir: './tests',
-
       use: {
-        browserName: 'chromium',
+        ...devices['chromium'],
 
         viewport: null,
 
@@ -45,10 +47,9 @@ export default defineConfig({
           args: ['--start-maximized']
         },
 
-        storageState: 'playwright/.auth/admin.json',
+        // Load storage state if file exists
+        storageState: fs.existsSync(authStatePath) ? authStatePath : undefined,
       },
-
-      dependencies: ['setup'],
     },
   ],
 });
