@@ -1,3 +1,0 @@
-Is Login Page: true
-Current URL: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
-⚠️ Auth state not loaded - navigating directly to dashboard

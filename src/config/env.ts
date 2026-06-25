@@ -2,7 +2,13 @@ import dotenv from 'dotenv';
 
 dotenv.config({ override: true });
 
-const requiredVars = ['BASE_URL', 'API_BASE_URL', 'USERNAME', 'PASSWORD', 'AUTH_STATE_PATH'];
+const requiredVars = [
+    'BASE_URL',
+    'API_BASE_URL',
+    'USERNAME',
+    'PASSWORD',
+    'AUTH_STATE_PATH'
+];
 
 requiredVars.forEach(variable => {
     if (!process.env[variable]) {

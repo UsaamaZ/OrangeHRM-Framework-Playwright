@@ -1,26 +1,33 @@
-import { test, expect } from '@playwright/test';
-import { pause } from '../../src/utils/pause';
+﻿import { test, expect } from '../../src/fixture/authFixture';
 
-test('Dashboard - Verify logged in state', async ({ page }) => {
-    console.log('Opening dashboard...');
-    await page.goto('/web/index.php/dashboard/index');
+const dashboardUrl = '/web/index.php/dashboard/index';
 
-    await page.waitForLoadState('networkidle');
+test('Dashboard - Verify logged in state', async ({ authenticatedPage: page }) => {
+  await test.step('Open the dashboard page', async () => {
+    await page.goto(dashboardUrl, { timeout: 60000, waitUntil: 'commit' });
+    await page.waitForLoadState('domcontentloaded', { timeout: 10000 }).catch(() => null);
+  });
 
+  await test.step('Verify dashboard URL and title', async () => {
     const currentUrl = page.url();
     const pageTitle = await page.title();
 
-    console.log('Current URL:', currentUrl);
-    console.log('Page title:', pageTitle);
+    expect(currentUrl).toContain('dashboard');
+    expect(pageTitle.length).toBeGreaterThan(0);
 
-    const onDashboard = currentUrl.includes('dashboard');
+    await test.info().attach('dashboard-url.txt', {
+      body: currentUrl,
+      contentType: 'text/plain',
+    });
+    await test.info().attach('dashboard-title.txt', {
+      body: pageTitle,
+      contentType: 'text/plain',
+    });
 
-    if (onDashboard) {
-        console.log('SUCCESS - Dashboard loaded in logged-in state!');
-    } else {
-        console.log('Still on login page - auth state may not have loaded');
-    }
-
-    console.log('Keeping dashboard open for 10 seconds...');
-    await pause(10000);
+    const screenshot = await page.screenshot();
+    await test.info().attach('dashboard-screenshot', {
+      body: screenshot,
+      contentType: 'image/png',
+    });
+  });
 });

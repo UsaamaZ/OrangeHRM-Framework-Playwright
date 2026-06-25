@@ -1,0 +1,4 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"","321","Auth Setup Complete - Verify stored auth state","chromium","2026-06-26","passed","2026-06-26","","ui\Login.spec.ts","",""
+"","26669","Dashboard - Verify logged in state","chromium","2026-06-26","passed","2026-06-26","","ui\Dashboard.spec.ts","",""
+"","13395","logout after login","chromium","2026-06-26","passed","2026-06-26","Authentication flow","ui\Logout.spec.ts","",""

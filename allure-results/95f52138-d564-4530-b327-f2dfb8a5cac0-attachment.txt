@@ -1,0 +1,12 @@
+Current URL: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+Waiting for login form to render
+Login form detected
+Found 3 input fields
+Username entered: admin
+Password entered
+Found submit button:  Login 
+URL before button click: https://opensource-demo.orangehrmlive.com/web/index.php/auth/login
+Login button clicked
+Waiting for navigation...
+URL after navigation: https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index
+Login successful - URL: https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index

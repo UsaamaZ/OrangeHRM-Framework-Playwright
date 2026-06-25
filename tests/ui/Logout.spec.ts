@@ -1,11 +1,12 @@
-import { test, expect } from '@playwright/test';
-import { DashboardPage } from '../../src/pages/DashboardPage';
+import { test, expect } from '../../src/fixture/authFixture';
+import { DashboardPage } from '../../src/pages/LogoutPage';
 
 test.describe('Authentication flow', () => {
 
-    test('logout after login', async ({ page }) => {
+    test('logout after login', async ({ authenticatedPage: page }) => {
 
-        await page.goto('/web/index.php/dashboard/index');
+        await page.goto('/web/index.php/dashboard/index', { timeout: 60000, waitUntil: 'commit' });
+        await page.waitForLoadState('domcontentloaded', { timeout: 10000 }).catch(() => null);
 
         const dashboardPage = new DashboardPage(page);
 
