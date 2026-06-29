@@ -3,16 +3,13 @@ import path from 'path';
 import fs from 'fs';
 import { ENV } from '../config/env';
 import { AuthService } from './auth.service';
+import { createEnvironmentFile } from "../utils/allureEnvironment";
 
 async function globalSetup() {
     console.log('Starting authentication setup...');
     console.log('Base URL:', ENV.baseUrl);
 
     const authPath = path.resolve(ENV.authStatePath);
-    if (fs.existsSync(authPath)) {
-        console.log('Auth state already exists at', authPath, '- skipping global setup.');
-        return;
-    }
 
     const browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
@@ -28,9 +25,11 @@ async function globalSetup() {
     const authService = new AuthService(page);
     await authService.login(ENV.username, ENV.password);
 
-    await authService.saveAuthState(authPath);
+    await page.context().storageState({
+        path: authPath,
+    });
     console.log('Auth state saved to:', authPath);
-
+    createEnvironmentFile();
     await browser.close();
     console.log('Setup complete - auth state ready for tests');
 }

@@ -15,7 +15,7 @@ export class AuthService {
             const inputCount = await allInputs.count();
             console.log('Found', inputCount, 'input fields');
 
-         
+
             const usernameField = allInputs.nth(1);
             const passwordField = allInputs.nth(2);
 
@@ -33,25 +33,29 @@ export class AuthService {
 
             console.log('URL before button click:', this.page.url());
             await loginButton.click();
-            console.log('Login button clicked');
+            await this.page.waitForTimeout(3000);
 
             console.log('Waiting for navigation...');
-            await Promise.race([
-                this.page.waitForURL('dashboard', { timeout: 10000 }).catch(() => null),
-                this.page.waitForLoadState('networkidle', { timeout: 10000 }).catch(() => null)
-            ]);
+            await this.page.waitForURL(
+                '**/dashboard/**',
+                { timeout: 15000 }
+            );
 
+            const currentUrl = this.page.url();
+
+            if (!currentUrl.includes('/dashboard')) {
+                throw new Error(
+                    `Login failed. Current URL: ${currentUrl}`
+                );
+            }
+
+            console.log('Login successful - URL:', currentUrl);
             console.log('URL after navigation:', this.page.url());
-            console.log('Login successful - URL:', this.page.url());
 
         } catch (error) {
             console.error('Login failed:', error);
             console.error('Final URL:', this.page.url());
             throw error;
         }
-    }
-
-    async saveAuthState(filePath: string) {
-        await this.page.context().storageState({ path: filePath });
     }
 }
