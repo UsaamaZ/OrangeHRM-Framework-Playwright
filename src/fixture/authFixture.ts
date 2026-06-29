@@ -7,7 +7,7 @@ export const test = base.extend<{
     authenticatedPage: async ({ browser }, use) => {
 
         const context = await browser.newContext({
-            storageState: path.resolve('auth/admin.json'),
+            storageState: path.resolve("auth/admin.json"),
         });
 
         const page = await context.newPage();
@@ -16,6 +16,29 @@ export const test = base.extend<{
 
         await context.close();
     },
+});
+
+test.afterEach(async ({ authenticatedPage }, testInfo) => {
+
+    const testFailedUnexpectedly =
+        testInfo.status !== testInfo.expectedStatus;
+
+    if (testFailedUnexpectedly) {
+
+        if (!authenticatedPage.isClosed()) {
+
+            const screenshot = await authenticatedPage.screenshot({
+                fullPage: true,
+                animations: "disabled",
+            });
+
+            await testInfo.attach("Failure Screenshot", {
+                body: screenshot,
+                contentType: "image/png",
+            });
+
+        }
+    }
 });
 
 export { expect };

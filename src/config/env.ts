@@ -1,13 +1,15 @@
 import dotenv from 'dotenv';
 
 dotenv.config({ override: true });
-
 const requiredVars = [
+    'APPLICATION_NAME',
+    'TEST_ENVIRONMENT',
     'BASE_URL',
-
+    'BROWSER',
     'USERNAME',
     'PASSWORD',
-    'AUTH_STATE_PATH'
+    'AUTH_STATE_PATH',
+    'TESTER'
 ];
 
 requiredVars.forEach(variable => {
@@ -25,5 +27,5 @@ export const ENV = {
     password: process.env.PASSWORD!,
     tester: process.env.TESTER!,
     authStatePath: process.env.AUTH_STATE_PATH!,
-    defaultTimeout: Number(process.env.DEFAULT_TIMEOUT) || 30000,
+    defaultTimeout: parseInt(process.env.DEFAULT_TIMEOUT ?? "30000", 10),
 };
