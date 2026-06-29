@@ -1,5 +1,5 @@
 ﻿import { test, expect } from '../../src/fixture/authFixture';
-import { AllureHelper } from '../../src/utils/allureHelper';
+import { AllureHelper } from '../../src/utils/allure/allureHelper';
 import { Severity } from "allure-js-commons";
 
 test('Dashboard - Verify logged in state', async ({ authenticatedPage: page }) => {
@@ -16,7 +16,7 @@ test('Dashboard - Verify logged in state', async ({ authenticatedPage: page }) =
   await page.goto('/web/index.php/dashboard/index');
 
   await expect(page).toHaveURL(/dashboard/);
-  await expect(page).toHaveTitle(/Google/);
+  await expect(page).toHaveTitle(/OrangeHRM/);
 
   // delibaretly failed the testts
   // await expect(page).toHaveTitle(/Google/);

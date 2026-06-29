@@ -3,7 +3,9 @@ import path from 'path';
 import fs from 'fs';
 import { ENV } from '../config/env';
 import { AuthService } from './auth.service';
-import { createEnvironmentFile } from "../utils/allureEnvironment";
+import { createEnvironmentFile } from "../utils/allure/allureEnvironment";
+import { createExecutorFile } from '../utils/allure/allureExecuter';
+import { createCategoriesFile } from "../utils/allure/allureCategories";
 
 async function globalSetup() {
     console.log('Starting authentication setup...');
@@ -28,9 +30,16 @@ async function globalSetup() {
     await page.context().storageState({
         path: authPath,
     });
+
     console.log('Auth state saved to:', authPath);
+
+
     createEnvironmentFile();
+    createExecutorFile();
+    createCategoriesFile();
+
     await browser.close();
+
     console.log('Setup complete - auth state ready for tests');
 }
 

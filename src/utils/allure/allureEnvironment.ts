@@ -1,7 +1,7 @@
 import fs from "fs";
 import path from "path";
 import os from "os";
-import { ENV } from "../config/env";
+import { ENV } from "../../config/env";
 
 export function createEnvironmentFile() {
     const content = `

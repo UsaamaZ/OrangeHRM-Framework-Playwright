@@ -1,0 +1,36 @@
+[
+    {
+        "name": "Assertion Failures",
+        "matchedStatuses": [
+            "failed"
+        ],
+        "messageRegex": ".*expect.*"
+    },
+    {
+        "name": "Locator Failures",
+        "matchedStatuses": [
+            "failed"
+        ],
+        "messageRegex": ".*locator.*|.*Timeout.*"
+    },
+    {
+        "name": "Authentication Failures",
+        "matchedStatuses": [
+            "failed"
+        ],
+        "messageRegex": ".*Login failed.*|.*auth.*"
+    },
+    {
+        "name": "Navigation Failures",
+        "matchedStatuses": [
+            "failed"
+        ],
+        "messageRegex": ".*toHaveURL.*|.*Navigation.*"
+    },
+    {
+        "name": "Product Defects",
+        "matchedStatuses": [
+            "failed"
+        ]
+    }
+]
