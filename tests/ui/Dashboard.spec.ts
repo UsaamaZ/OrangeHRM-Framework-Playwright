@@ -17,7 +17,6 @@ test('Dashboard - Verify logged in state', async ({ authenticatedPage: page }) =
 
   await expect(page).toHaveURL(/dashboard/);
   await expect(page).toHaveTitle(/OrangeHRM/);
-
   // delibaretly failed the testts
   // await expect(page).toHaveTitle(/Google/);
 
