@@ -1,7 +1,10 @@
 import fs from "fs";
 import path from "path";
+import { ensureAllureResultsFolder } from "../allureFoldersPresence";
 
 export function createExecutorFile() {
+
+    const resultsDir = ensureAllureResultsFolder();
 
     const executor = {
         name: "Local Machine",
@@ -11,11 +14,7 @@ export function createExecutorFile() {
         reportName: "OrangeHRM Test Report",
     };
 
-    const filePath = path.join(
-        process.cwd(),
-        "allure-results",
-        "executor.json"
-    );
+    const filePath = path.join(resultsDir, "executor.json");
 
     fs.writeFileSync(
         filePath,

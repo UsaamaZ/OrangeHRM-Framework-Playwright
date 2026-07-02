@@ -2,8 +2,12 @@ import fs from "fs";
 import path from "path";
 import os from "os";
 import { ENV } from "../../config/env";
+import { ensureAllureResultsFolder } from "../allureFoldersPresence";
 
 export function createEnvironmentFile() {
+
+    const resultsDir = ensureAllureResultsFolder();
+
     const content = `
 Application=${ENV.application}
 Environment=${ENV.environment}
@@ -15,7 +19,7 @@ Tester=${ENV.tester}
 `;
 
     fs.writeFileSync(
-        path.join(process.cwd(), "allure-results", "environment.properties"),
+        path.join(resultsDir, "environment.properties"),
         content.trim()
     );
 }

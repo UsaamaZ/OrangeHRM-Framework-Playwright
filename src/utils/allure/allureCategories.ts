@@ -1,7 +1,10 @@
 import fs from "fs";
 import path from "path";
+import { ensureAllureResultsFolder } from "../allureFoldersPresence";
 
 export function createCategoriesFile() {
+
+    const resultsDir = ensureAllureResultsFolder();
 
     const source = path.join(
         process.cwd(),
@@ -9,8 +12,7 @@ export function createCategoriesFile() {
     );
 
     const destination = path.join(
-        process.cwd(),
-        "allure-results",
+        resultsDir,
         "categories.json"
     );
 
