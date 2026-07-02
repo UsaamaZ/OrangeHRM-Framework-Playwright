@@ -10,7 +10,7 @@ A UI automation framework built with Playwright and TypeScript using the OrangeH
 * Node.js
 * Allure Report
 * Dotenv
-
+* cross-env
 
 ## Current Features
 
