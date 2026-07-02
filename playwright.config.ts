@@ -44,7 +44,7 @@ export default defineConfig({
         viewport: null,
 
         launchOptions: {
-          headless: false,
+          headless: process.env.HEADLESS === 'true',
           // slowMo: 500,
           args: ['--start-maximized']
         },

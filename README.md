@@ -76,6 +76,25 @@ npm run report
 
 ---
 
+## QA Scripts
+npm run qa:headed
+npm run qa:headless
+
+## DEV Scripts
+npm run dev:headed
+npm run dev:headless
+
+## UAT Scripts
+npm run uat:headed
+npm run uat:headless
+
+## PROD Scripts
+npm run prod:headed
+npm run prod:headless
+
+
+---
+
 ## Configuration
 
 The framework uses a `.env` file to manage configuration.
@@ -118,6 +137,7 @@ Project structure is ready for future API automation.
 
 ## Author
 
-Usama Zaheer Butt
-
 QA Automation Engineer
+
+
+

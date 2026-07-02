@@ -1,4 +1,4 @@
-import {APIRequestContext, APIResponse, expect} from "@playwright/test";
+import { APIRequestContext, APIResponse, expect } from "@playwright/test";
 
 export class ApiClient {
 
@@ -20,12 +20,8 @@ export class ApiClient {
 
     protected async parseResponse<T>(response: APIResponse): Promise<T> {
 
-        console.log("Status:", response.status());
-        console.log("URL:", response.url());
-        console.log("Body:");
-        console.log(await response.text());
-
-        expect(response.ok()).toBeTruthy();
+        expect(response.ok(), `API request failed.Status: ${response.status()}URL: ${response.url()}
+        Response:${await response.text()}`).toBeTruthy();
 
         return await response.json() as T;
     }

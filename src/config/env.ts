@@ -1,6 +1,13 @@
 import dotenv from 'dotenv';
 
-dotenv.config({ override: true });
+
+const testEnv = process.env.TEST_ENV || 'qa';
+
+dotenv.config({
+    path: `env/.env.${testEnv}`,
+    override: true
+});
+
 const requiredVars = [
     'APPLICATION_NAME',
     'TEST_ENVIRONMENT',
