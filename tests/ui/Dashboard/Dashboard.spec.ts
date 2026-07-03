@@ -1,5 +1,5 @@
-﻿import { test, expect } from '../../src/fixture/authFixture';
-import { AllureHelper } from '../../src/utils/allure/allureHelper';
+﻿import { test, expect } from '../../../src/fixture/authFixture';
+import { AllureHelper } from '../../../src/utils/allure/allureHelper';
 import { Severity } from "allure-js-commons";
 
 test('Dashboard - Verify logged in state', async ({ authenticatedPage: page }) => {
