@@ -1,38 +1,31 @@
 import fs from "fs";
 import path from "path";
+import { ensureAllureResultsFolder } from "../allureFoldersPresence";
 
-export class AllureHistory {
+export function copyHistory() {
 
-    private static readonly reportHistory = path.resolve(
+    const reportHistory = path.join(
+        process.cwd(),
         "allure-report",
         "history"
     );
 
-    private static readonly resultsHistory = path.resolve(
-        "allure-results",
+    const resultsDir = ensureAllureResultsFolder();
+
+    const resultsHistory = path.join(
+        resultsDir,
         "history"
     );
 
-    static prepare(): void {
-
-        if (!fs.existsSync(this.reportHistory)) {
-            console.log("No previous history found.");
-            return;
-        }
-
-        fs.rmSync(this.resultsHistory, {
-            recursive: true,
-            force: true
-        });
-
-        fs.cpSync(
-            this.reportHistory,
-            this.resultsHistory,
-            {
-                recursive: true
-            }
-        );
-
-        console.log("Previous Allure history copied.");
+    if (!fs.existsSync(reportHistory)) {
+        console.log("No previous Allure history found.");
+        return;
     }
+
+    fs.cpSync(reportHistory, resultsHistory, {
+        recursive: true,
+        force: true
+    });
+
+    console.log("Allure history copied.");
 }

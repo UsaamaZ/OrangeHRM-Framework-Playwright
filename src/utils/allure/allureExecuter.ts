@@ -10,7 +10,7 @@ export function createExecutorFile() {
         name: "Local Machine",
         type: "Playwright",
         buildName: "OrangeHRM Automation Framework",
-        buildOrder: 1,
+        buildOrder: Math.floor(Date.now() / 1000),
         reportName: "OrangeHRM Test Report",
     };
 

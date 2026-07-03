@@ -1,5 +1,5 @@
 import { test, expect } from '../../src/fixture/authFixture';
-import { DashboardPage } from '../../src/pages/LogoutPage';
+import { DashboardPage } from '../../src/pages/login/LogoutPage';
 
 test.describe('Authentication flow', () => {
 
