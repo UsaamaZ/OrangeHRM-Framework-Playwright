@@ -1,5 +1,3 @@
 "BROKEN","EPIC","FAILED","FEATURE","PASSED","SKIPPED","STORY","UNKNOWN"
 "0","","0","","1","0","","0"
-"0","Dashboard","2","Dashboard Verification","2","0","Verify authenticated user can access dashboard","0"
-"0","API","0","Employee","1","0","Retrieve Employees","0"
-"0","API","1","Leave","0","0","Retrieve Leave Requests","0"
+"0","Dashboard","0","Dashboard Verification","1","0","Verify authenticated user can access dashboard","0"

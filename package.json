@@ -6,16 +6,12 @@
   "scripts": {
     "qa:headed": "cross-env TEST_ENV=qa HEADLESS=false playwright test",
     "qa:headless": "cross-env TEST_ENV=qa HEADLESS=true playwright test Dashboard.spec.ts",
-
     "dev:headed": "cross-env TEST_ENV=dev HEADLESS=false playwright test Dashboard.spec.ts",
     "dev:headless": "cross-env TEST_ENV=dev HEADLESS=true playwright test Dashboard.spec.ts",
-
     "uat:headed": "cross-env TEST_ENV=uat HEADLESS=false playwright test Dashboard.spec.ts",
     "uat:headless": "cross-env TEST_ENV=uat HEADLESS=true playwright test Dashboard.spec.ts",
-
     "prod:headed": "cross-env TEST_ENV=prod HEADLESS=false playwright test Dashboard.spec.ts",
     "prod:headless": "cross-env TEST_ENV=prod HEADLESS=true playwright test Dashboard.spec.ts",
-
     "allure:generate": "node scripts/generateAllureReport.js",
     "allure:open": "allure open allure-report"
   },
