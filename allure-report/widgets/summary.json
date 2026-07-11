@@ -1,1 +1,1 @@
-{"reportName":"OrangeHRM Test Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":2,"unknown":0,"total":2},"time":{"start":1783714392762,"stop":1783716698234,"duration":2305472,"minDuration":9429,"maxDuration":13053,"sumDuration":22482}}
+{"reportName":"OrangeHRM Test Report","testRuns":[],"statistic":{"failed":0,"broken":0,"skipped":0,"passed":2,"unknown":0,"total":2},"time":{"start":1783714392762,"stop":1783759306700,"duration":44913938,"minDuration":9429,"maxDuration":14612,"sumDuration":24041}}
