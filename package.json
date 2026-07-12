@@ -20,7 +20,7 @@
     "allure:generate": "node scripts/generateAllureReport.js",
     "allure:open": "allure open allure-report",
 
-    "notify:slack": "node scripts/notifySlack.js"
+    "notify:slack":"node scripts/notifySlack.js"
     
   },
   "keywords": [],

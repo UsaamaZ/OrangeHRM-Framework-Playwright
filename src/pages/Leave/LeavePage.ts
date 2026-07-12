@@ -9,7 +9,7 @@ export class LeavePage extends BasePage {
     constructor(page: Page) {
         super(page);
 
-        this.locator = new LeaveLocators(page);
+        this.locator = new LeaveLocators(page); 
     }
 
     async openApplyLeave() {

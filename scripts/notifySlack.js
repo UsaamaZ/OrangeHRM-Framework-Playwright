@@ -1,28 +1,29 @@
 const axios = require("axios");
 
-const webhook = process.env.SLACK_WEBHOOK;
+async function notify() {
 
-const message = {
-    text: `
-✅ OrangeHRM Automation Completed
+    const webhook = process.env.SLACK_WEBHOOK;
+
+    const payload = {
+
+        text:
+`✅ OrangeHRM Automation
 
 Repository : ${process.env.GITHUB_REPOSITORY}
-Branch     : ${process.env.GITHUB_REF_NAME}
-Actor      : ${process.env.GITHUB_ACTOR}
-Run        : #${process.env.GITHUB_RUN_NUMBER}
 
-View Pipeline:
-${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}
-`
-};
+Branch : ${process.env.GITHUB_REF_NAME}
 
-async function sendSlackMessage() {
+Triggered By : ${process.env.GITHUB_ACTOR}
+
+Run Number : ${process.env.GITHUB_RUN_NUMBER}`
+
+    };
 
     try {
 
-        await axios.post(webhook, message);
+        await axios.post(webhook, payload);
 
-        console.log("Slack notification sent successfully.");
+        console.log("Slack Notification Sent.");
 
     } catch (error) {
 
@@ -34,4 +35,4 @@ async function sendSlackMessage() {
 
 }
 
-sendSlackMessage();
+notify();

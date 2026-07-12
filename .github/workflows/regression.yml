@@ -3,23 +3,23 @@ name: OrangeHRM Regression
 on:
   push:
     branches:
-      - main
       - leave-module
+
+  workflow_dispatch:
 
 jobs:
   regression:
-
     runs-on: ubuntu-latest
 
     steps:
 
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install Dependencies
         run: npm ci
@@ -27,18 +27,10 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - name: Run Tests
+      - name: Run Automation
         run: npm run qa:headless
 
-      - name: Generate Allure Report
-        run: npm run allure:generate
-
-      - name: Upload Allure Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: allure-report
-
+      # 👇 Add it here
       - name: Notify Slack
         if: always()
         env:
