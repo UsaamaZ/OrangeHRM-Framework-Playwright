@@ -3,7 +3,7 @@ name: OrangeHRM Regression
 on:
   push:
     branches:
-      - leave-module
+      - slack-integration
 
   workflow_dispatch:
 
