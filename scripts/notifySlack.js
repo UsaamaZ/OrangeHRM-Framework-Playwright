@@ -2,7 +2,7 @@ const axios = require("axios");
 
 async function notify() {
 
-    const webhook = process.env.SLACK_AUTOMATION_HOOK;
+    const webhook = process.env.SLACK_WEBHOOK;
 
     const payload = {
 
@@ -11,9 +11,9 @@ async function notify() {
 
 Repository : ${process.env.GITHUB_REPOSITORY}
 
-Branch : ${process.env.GITHUB_REF_NAME}
+// Branch : ${process.env.GITHUB_REF_NAME}
 
-// Triggered By : ${process.env.GITHUB_ACTOR}
+Triggered By : ${process.env.GITHUB_ACTOR}
 
 Run Number : ${process.env.GITHUB_RUN_NUMBER}`
 
@@ -23,7 +23,7 @@ Run Number : ${process.env.GITHUB_RUN_NUMBER}`
 
         await axios.post(webhook, payload);
 
-        console.log("Slack Notification Sent");
+        console.log("Slack Notification Sent.");
 
     } catch (error) {
 

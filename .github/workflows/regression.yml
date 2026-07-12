@@ -30,8 +30,9 @@ jobs:
       - name: Run Automation
         run: npm run qa:headless
 
+      # 👇 Add it here
       - name: Notify Slack
         if: always()
         env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_AUTOMATION_HOOK }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         run: npm run notify:slack
