@@ -1,7 +1,7 @@
 import { test as base, expect, APIRequestContext } from "@playwright/test";
 import path from "path";
-import { EmployeeApi } from "../api/sercives/EmployeeApi";
-import { LeaveApi } from "../api/sercives/LeaveApi";
+import { EmployeeApi } from "../api/services/EmployeeApi";
+import { LeaveApi } from "../api/services/LeaveApi";
 import { ENV } from "../config/env";
 
 

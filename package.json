@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
 
+    "ui": "playwright test tests/ui",
+    "api": "playwright test tests/api",
+
     "qa:headed": "cross-env TEST_ENV=qa HEADLESS=false playwright test",
     "qa:headless": "cross-env TEST_ENV=qa HEADLESS=true playwright test Dashboard.spec.ts",
 

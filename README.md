@@ -1,62 +1,113 @@
 # OrangeHRM Automation Framework
 
-A UI automation framework built with Playwright and TypeScript using the OrangeHRM demo application. The goal of this project is to follow a clean and scalable framework structure while keeping the code easy to maintain and extend.
+A scalable UI and API automation framework built with **Playwright** and **TypeScript** using the OrangeHRM Demo application. The framework is designed following industry best practices with a strong focus on maintainability, reusability, reporting, and CI/CD integration.
 
+---
 
-## Tech Stack
+## Technology Stack
 
-* Playwright
-* TypeScript
-* Node.js
-* Allure Report
-* Dotenv
-* cross-env
+- Playwright
+- TypeScript
+- Node.js
+- Allure Report
+- Axios
+- Dotenv
+- Cross-env
+- GitHub Actions
 
-## Current Features
+---
 
-* Page Object Model (POM)
-* Custom Playwright Fixtures
-* Global Authentication Setup
-* Storage State Authentication
-* Automatic Authentication Refresh
-* Environment-based Configuration
-* Allure Reporting
-* Allure Metadata (Epic, Feature, Story, Severity, Owner & Tags)
-* Environment Information in Allure Report
+## Framework Features
 
+- Page Object Model (POM)
+- Reusable Components
+- Custom Playwright Fixtures
+- Global Authentication Setup
+- Storage State Authentication
+- Automatic Authentication Refresh
+- Environment-Based Configuration (QA, DEV, UAT, PROD)
+- API Client Architecture
+- Dynamic Test Data Generation
+- Allure Reporting
+- Allure Metadata (Epic, Feature, Story, Severity, Owner and Tags)
+- Environment Information in Allure Reports
+- GitHub Actions Pipeline
+- Slack Notification Integration
 
+---
 
 ## Project Structure
 
 ```text
-src
-├── config
-├── fixture
-├── pages
-├── setup
-└── utils
-
-tests
-├── ui
-└── api
+.
+├── .github
+│   └── workflows
+├── auth
+├── env
+├── scripts
+├── src
+│   ├── api
+│   ├── config
+│   ├── fixture
+│   ├── pages
+│   ├── setup
+│   ├── test-data
+│   └── utils
+├── tests
+│   ├── api
+│   ├── demo
+│   └── ui
+├── playwright.config.ts
+└── package.json
+```
 
 ---
 
 ## Getting Started
 
-Install dependencies
+### Install Dependencies
 
 ```bash
 npm install
 ```
 
-Run all UI tests
+---
+
+## Execute Tests
+
+### QA
 
 ```bash
-npm run test:ui
+npm run qa:headed
+npm run qa:headless
 ```
 
-Generate the Allure report
+### DEV
+
+```bash
+npm run dev:headed
+npm run dev:headless
+```
+
+### UAT
+
+```bash
+npm run uat:headed
+npm run uat:headless
+```
+
+### PROD
+
+```bash
+npm run prod:headed
+npm run prod:headless
+```
+
+---
+
+## Allure Reports
+
+Generate the report
 
 ```bash
 npm run allure:generate
@@ -68,7 +119,7 @@ Open the report
 npm run allure:open
 ```
 
-Or generate and open the report in one command
+Generate and open the report
 
 ```bash
 npm run report
@@ -76,68 +127,80 @@ npm run report
 
 ---
 
-## QA Scripts
-npm run qa:headed
-npm run qa:headless
+## Environment Configuration
 
-## DEV Scripts
-npm run dev:headed
-npm run dev:headless
+The framework uses environment-specific configuration files located in the `env` directory.
 
-## UAT Scripts
-npm run uat:headed
-npm run uat:headless
-
-## PROD Scripts
-npm run prod:headed
-npm run prod:headless
-
-
----
-
-## Configuration
-
-The framework uses a `.env` file to manage configuration.
-
-Example values:
+Example:
 
 ```env
+APPLICATION_NAME=
+TEST_ENVIRONMENT=
+
 BASE_URL=
 USERNAME=
 PASSWORD=
 
-APPLICATION_NAME=
-TEST_ENVIRONMENT=
 BROWSER=
-TESTER=
-```
+HEADLESS=
 
-This keeps the framework flexible and avoids changing the code when switching environments.
+This approach allows the same test suite to run against multiple environments without modifying the source code.
 
+---
 
-## Current Test Coverage
+## Current Automation Coverage
 
-### UI
+### UI Automation
 
-* Login
-* Dashboard Verification
+- Login
+- Dashboard Verification
+- Add Employee
+- Search Employee
 
-### API
+### API Automation
 
-Project structure is ready for future API automation.
+- Employee APIs
+- Leave APIs
 
+---
 
-## What's Next
+## Reporting
 
-* Automatic screenshots on test failure
-* Video attachments in Allure
-* Trace files
-* API automation
-* CI/CD integration
+The framework integrates Allure Reports with support for:
+
+- Execution Summary
+- Test Categories
+- Environment Details
+- Screenshots on Failure
+- Trace Files
+- Videos
+- History Trend
+- Custom Metadata
+
+---
+
+## CI/CD
+
+The project includes a GitHub Actions pipeline that automatically:
+
+- Installs dependencies
+- Executes Playwright tests
+- Generates Allure Reports
+- Sends Slack Notifications
+- Supports multiple environments
+
+---
+
+## Future Enhancements
+
+- Employee CRUD API Integration
+- Leave Module UI Automation
+- Hybrid UI + API Scenarios
+- GitHub Pages for Allure Report Publishing
+- Parallel Execution Optimization
+- Docker Support
+
+---
 
 ## Author
-
 QA Automation Engineer
-
-
-

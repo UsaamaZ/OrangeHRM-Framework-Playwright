@@ -11,11 +11,9 @@ async function notify() {
 
 Repository : ${process.env.GITHUB_REPOSITORY}
 
-// Branch : ${process.env.GITHUB_REF_NAME}
+Branch : ${process.env.GITHUB_REF_NAME}
 
-Triggered By : ${process.env.GITHUB_ACTOR}
-
-Run Number : ${process.env.GITHUB_RUN_NUMBER}`
+Triggered By : ${process.env.GITHUB_ACTOR}`
 
     };
 

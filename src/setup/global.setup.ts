@@ -16,7 +16,6 @@ async function globalSetup() {
     const browser = await chromium.launch({ headless: true });
     const page = await browser.newPage();
 
-    // Navigate to home which should redirect to login if not authenticated
     await page.goto(ENV.baseUrl, {
         waitUntil: 'domcontentloaded',
         timeout: ENV.defaultTimeout,
@@ -43,4 +42,4 @@ async function globalSetup() {
     console.log('Setup complete - auth state ready for tests');
 }
 
-export default globalSetup;
+// export default globalSetup;

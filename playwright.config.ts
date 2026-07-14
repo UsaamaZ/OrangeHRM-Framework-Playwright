@@ -7,7 +7,7 @@ import { ENV } from './src/config/env';
 const authStatePath = path.resolve(process.cwd(), ENV.authStatePath);
 
 export default defineConfig({
-  testDir: './tests',
+  testDir: './',
 
   globalSetup: require.resolve('./src/setup/global.setup.ts'),
 
