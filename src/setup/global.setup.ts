@@ -42,4 +42,4 @@ async function globalSetup() {
     console.log('Setup complete - auth state ready for tests');
 }
 
-// export default globalSetup;
+export default globalSetup;

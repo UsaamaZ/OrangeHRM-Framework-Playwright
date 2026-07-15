@@ -30,7 +30,6 @@ jobs:
       - name: Run Automation
         run: npm run qa:headless
 
-      # 👇 Add it here
       - name: Notify Slack
         if: always()
         env:
