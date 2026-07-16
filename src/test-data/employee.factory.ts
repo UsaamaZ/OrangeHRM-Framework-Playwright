@@ -1,5 +1,4 @@
-import { EmployeeData } from "../pages/Employee/EmployeeData";
-
+import { EmployeeData } from "../ui/Employee/employee.data";
 export class EmployeeFactory {
 
     static create(): EmployeeData {

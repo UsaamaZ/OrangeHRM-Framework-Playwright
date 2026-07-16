@@ -1,6 +1,6 @@
-import { test } from "../../../src/fixture/authFixture";
-import { EmployeeFactory } from "../../../src/test-data/EmployeeFactory";
-import { EmployeePage } from "../../../src/pages/Employee/EmployeePage";
+import { test } from "../../../src/fixtures/auth.fixture";
+import { EmployeeFactory } from "../../../src/test-data/employee.factory";
+import { EmployeePage } from "../../../src/ui/Employee/employee.page";
 
 test.describe("Employee Search", () => {
 

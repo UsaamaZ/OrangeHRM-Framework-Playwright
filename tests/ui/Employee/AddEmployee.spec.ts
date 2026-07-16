@@ -1,6 +1,6 @@
-import { test } from "../../../src/fixture/authFixture";
-import { EmployeePage } from "../../../src/pages/Employee/EmployeePage";
-import { EmployeeFactory } from "../../../src/test-data/EmployeeFactory";
+import { test } from "../../../src/fixtures/auth.fixture";
+import { EmployeePage } from "../../../src/ui/Employee/employee.page";
+import { EmployeeFactory } from "../../../src/test-data/employee.factory";
 import  {AllureHelper} from '../../../src/utils/allure/allureHelper';
 import { Severity } from "allure-js-commons";
 

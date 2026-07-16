@@ -1,6 +1,5 @@
 import { chromium } from '@playwright/test';
 import path from 'path';
-import fs from 'fs';
 import { ENV } from '../config/env';
 import { AuthService } from './auth.service';
 import { createEnvironmentFile } from "../utils/allure/allureEnvironment";
@@ -13,7 +12,7 @@ async function globalSetup() {
 
     const authPath = path.resolve(ENV.authStatePath);
 
-    const browser = await chromium.launch({ headless: true });
+    const browser = await chromium.launch();
     const page = await browser.newPage();
 
     await page.goto(ENV.baseUrl, {

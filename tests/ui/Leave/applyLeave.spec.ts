@@ -1,5 +1,5 @@
-import { test } from "../../../src/fixture/authFixture";
-import { LeavePage } from "../../../src/pages/Leave/LeavePage";
+import { test } from "../../../src/fixtures/auth.fixture";
+import { LeavePage } from "../../../src/ui/Leave/LeavePage";
 
 test("Navigate to Apply Leave page", async ({ authenticatedPage }) => {
 

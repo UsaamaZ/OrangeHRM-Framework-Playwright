@@ -1,8 +1,8 @@
 import { Page, expect } from '@playwright/test';
-import { EmployeeLocators } from '../Employee/EmployeeLocators'
+import { EmployeeLocators } from './employee.locators'
 import {BasePage} from '../BasePage'
 import { Sidebar } from '../components/Sidebar';
-import { EmployeeData } from './EmployeeData';
+import { EmployeeData } from './employee.data';
 
 
 export class EmployeePage extends BasePage {
