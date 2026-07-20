@@ -3,7 +3,6 @@ import path from 'path';
 import fs from 'fs';
 import { ENV } from './src/config/env';
 
-// Resolve the absolute path to auth state file
 const authStatePath = path.resolve(process.cwd(), ENV.authStatePath);
 
 export default defineConfig({

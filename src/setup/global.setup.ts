@@ -7,7 +7,7 @@ import { createExecutorFile } from '../utils/allure/allureExecuter';
 import { createCategoriesFile } from "../utils/allure/allureCategories";
 
 async function globalSetup() {
-    console.log('Starting authentication setup...');
+    console.log('Starting authentication setup');
     console.log('Base URL:', ENV.baseUrl);
 
     const authPath = path.resolve(ENV.authStatePath);
@@ -38,7 +38,7 @@ async function globalSetup() {
 
     await browser.close();
 
-    console.log('Setup complete - auth state ready for tests');
+    // console.log('Setup complete');
 }
 
 export default globalSetup;

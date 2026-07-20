@@ -6,7 +6,23 @@ on:
       - slack-integration
 
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select Environment"
+        required: true
+        default: qa
+        type: choice
+        options:
+          - qa
+          - dev
+          - uat
+          - prod
 
+      notifySlack:
+        description: "Notify Slack"
+        required: true
+        default: true
+        type: boolean
 jobs:
   regression:
     runs-on: ubuntu-latest
