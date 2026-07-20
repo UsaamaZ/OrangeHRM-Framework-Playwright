@@ -3,18 +3,25 @@ const axios = require("axios");
 async function notify() {
 
     const webhook = process.env.SLACK_WEBHOOK;
+    const workflowUrl =
+        `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
 
     const payload = {
+        text: `
+OrangeHRM Automation
 
-        text:
-`OrangeHRM Automation
-
-Repository : ${process.env.GITHUB_REPOSITORY}
+Project : OrangeHRM Automation Framework
 
 Branch : ${process.env.GITHUB_REF_NAME}
 
-Triggered By : ${process.env.GITHUB_ACTOR}`
+Executed By : Test Engineer
 
+Workflow :
+${workflowUrl}
+
+Artifact :
+Open the workflow above and download the "allure-report" artifact from the Artifacts section.
+`
     };
 
     try {

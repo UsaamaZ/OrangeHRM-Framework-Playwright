@@ -12,7 +12,6 @@ export class BasePage {
         await locator.fill(text);
     }
 
-
     protected async getText(locator: Locator): Promise<string> {
         return (await locator.textContent())?.trim() ?? "";
     }
