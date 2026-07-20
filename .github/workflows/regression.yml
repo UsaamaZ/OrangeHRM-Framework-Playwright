@@ -44,7 +44,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Automation
-        run: npm run qa:headless
+        run: npm run ${{ github.event.inputs.environment }}:headless
 
       - name: Notify Slack
         if: always()
