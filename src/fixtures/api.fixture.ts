@@ -15,9 +15,7 @@ export const test = base.extend<{
 
     apiRequest: async ({ browser }, use) => {
 
-        const context = await browser.newContext({
-            storageState: path.resolve(ENV.authStatePath)
-        });
+        const context = await browser.newContext({ storageState: path.resolve(ENV.authStatePath) });
 
         await use(context.request);
 

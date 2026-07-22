@@ -1,12 +1,7 @@
 export const API = {
 
     PIM: {
-         EMPLOYEES: "/web/index.php/api/v2/pim/employees",
-
-    CREATE_EMPLOYEE: "/web/index.php/api/v2/pim/employees",
-
-    DELETE_EMPLOYEE: (id:number) =>
-        `/web/index.php/api/v2/pim/employees/${id}`
+        EMPLOYEES: "/web/index.php/api/v2/pim/employees",
     },
 
     LEAVE: {

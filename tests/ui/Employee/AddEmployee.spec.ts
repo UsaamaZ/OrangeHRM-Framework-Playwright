@@ -1,26 +1,48 @@
-import { test } from "../../../src/fixture/authFixture";
-import { EmployeePage } from "../../../src/pages/Employee/EmployeePage";
-import { EmployeeFactory } from "../../../src/test-data/EmployeeFactory";
-import  {AllureHelper} from '../../../src/utils/allure/allureHelper';
+import { test } from "../../../src/fixtures/app.fixture";
+import { EmployeePage } from "../../../src/pages/Employee/employee.page";
+import { EmployeeFactory } from "../../../src/test-data/employee.factory";
+import { AllureHelper } from "../../../src/utils/allure/allureHelper";
 import { Severity } from "allure-js-commons";
 
 test.describe("Employee Management", () => {
 
-    test("Add a new employee", async ({ authenticatedPage }) => {
+  test("Add a new employee", async ({
+    authenticatedPage,
+    employeeApi
+  }) => {
 
-          await AllureHelper.addMetadata(
+    await AllureHelper.addMetadata(
             "Dashboard",
             "Dashboard Verification",
             "Verify add Employee",
             Severity.CRITICAL,
             "Automation Engineer",
             ["Smoke", "Regression"]
-          );
+    );
+
         const employeePage = new EmployeePage(authenticatedPage);
 
         const employee = EmployeeFactory.create();
 
+    let createdEmployee;
+
+    try {
+
         await employeePage.addEmployee(employee);
+
+      createdEmployee = await employeeApi.findEmployeeByName(
+        employee.firstName,
+        employee.middleName,
+        employee.lastName
+      );
+
+    } finally {
+
+      if (createdEmployee) {
+        await employeeApi.deleteEmployee(createdEmployee.empNumber);
+      }
+
+    }
 
     });
 

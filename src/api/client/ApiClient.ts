@@ -18,6 +18,17 @@ export class ApiClient {
 
     }
 
+    protected async delete(
+        endpoint: string,
+        body?: unknown
+    ): Promise<APIResponse> {
+
+        return await this.request.delete(endpoint, {
+            data: body
+        });
+
+    }
+
     protected async parseResponse<T>(response: APIResponse): Promise<T> {
 
         expect(response.ok(), `API request failed.Status: ${response.status()}URL: ${response.url()}

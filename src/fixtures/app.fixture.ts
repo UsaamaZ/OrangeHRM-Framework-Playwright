@@ -1,11 +1,11 @@
-import { test as base, expect, APIRequestContext } from "@playwright/test";
-import path from "path";
+import { test as authTest, expect } from "./auth.fixture";
 import { EmployeeApi } from "../api/services/employee.api";
 import { LeaveApi } from "../api/services/leave.api";
+import { APIRequestContext } from "@playwright/test";
+import path from "path";
 import { ENV } from "../config/env";
 
-
-export const test = base.extend<{
+export const test = authTest.extend<{
 
     apiRequest: APIRequestContext;
     employeeApi: EmployeeApi;
@@ -16,7 +16,7 @@ export const test = base.extend<{
     apiRequest: async ({ browser }, use) => {
 
         const context = await browser.newContext({
-            storageState: path.resolve(ENV.authStatePath)
+            storageState: path.resolve(ENV.authStatePath),
         });
 
         await use(context.request);
@@ -27,16 +27,16 @@ export const test = base.extend<{
 
     employeeApi: async ({ apiRequest }, use) => {
 
-        await use(
-            new EmployeeApi(apiRequest)
-        );
+        await use(new EmployeeApi(apiRequest));
+
     },
 
     leaveApi: async ({ apiRequest }, use) => {
-        await use(
-            new LeaveApi(apiRequest)
-        );
+
+        await use(new LeaveApi(apiRequest));
+
     }
+
 });
 
 export { expect };

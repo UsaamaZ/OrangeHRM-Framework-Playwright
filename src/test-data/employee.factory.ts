@@ -1,4 +1,4 @@
-import { EmployeeData } from "../pages/Employee/EmployeeData";
+import { EmployeeData } from "../pages/Employee/employee.data";
 
 export class EmployeeFactory {
 
