@@ -5,7 +5,8 @@ async function notify() {
     const webhook = process.env.SLACK_WEBHOOK;
     const workflowUrl =
         `${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`;
-
+    const reportUrl =
+        `https://${process.env.GITHUB_REPOSITORY_OWNER}.github.io/${process.env.GITHUB_REPOSITORY.split('/')[1]}/`;
     const payload = {
         text: `
 OrangeHRM Automation
@@ -19,8 +20,8 @@ Executed By : Test Engineer
 Workflow :
 ${workflowUrl}
 
-Artifact :
-Open the workflow above and download the "allure-report" artifact from the Artifacts section.
+Allure Report :
+${reportUrl}
 `
     };
 
