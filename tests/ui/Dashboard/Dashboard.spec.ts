@@ -9,7 +9,7 @@ test('Dashboard - Verify logged in state', async ({ authenticatedPage: page }) =
     "Dashboard Verification",
     "Verify authenticated user can access dashboard",
     Severity.CRITICAL,
-    "Automation Engineer",
+    "Test Automation Engineer",
     ["Smoke", "Regression"]
   );
 

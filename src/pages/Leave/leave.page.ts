@@ -1,6 +1,6 @@
 import { expect, Page } from "@playwright/test";
 import { BasePage } from "../BasePage";
-import { LeaveLocators } from "./LeaveLocators";
+import { LeaveLocators } from "./leave.locators";
 
 export class LeavePage extends BasePage {
 
