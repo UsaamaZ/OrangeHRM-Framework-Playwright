@@ -1,4 +1,4 @@
-import { test } from "../../../src/fixture/authFixture";
+import { test } from "../../../src/fixtures/auth.fixture";
 import { EmployeeFactory } from "../../../src/test-data/employee.factory";
 import { EmployeePage } from "../../../src/pages/Employee/employee.page";
 
