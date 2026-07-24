@@ -35,22 +35,48 @@ export default defineConfig({
   },
 
   projects: [
+    
+    // Login Tests (No Storage State)
     {
-      name: 'chromium',
+      name: "login",
+
+      testMatch: /tests\/auth\/.*\.spec\.ts/,
 
       use: {
-        ...devices['chromium'],
+        browserName: "chromium",
 
         viewport: null,
 
         launchOptions: {
-         headless: process.env.HEADLESS === 'true',
-           slowMo: 500,
-          args: ['--start-maximized']
+          headless: process.env.HEADLESS === "true",
+          slowMo: 500,
+          args: ["--start-maximized"],
         },
 
-        // Load storage state if file exists
-        storageState: fs.existsSync(authStatePath) ? authStatePath : undefined,
+        storageState: undefined,
+      },
+    },
+
+    // Remaining Tests (Uses Storage State)
+    {
+      name: 'chromium',
+
+      testIgnore: /tests\/auth\/.*\.spec\.ts/,
+
+      use: {
+        ...devices['Desktop Chrome'],
+
+        viewport: null,
+
+        launchOptions: {
+          headless: process.env.HEADLESS === 'true',
+          slowMo: 500,
+          args: ['--start-maximized'],
+        },
+
+        storageState: fs.existsSync(authStatePath)
+          ? authStatePath
+          : undefined,
       },
     },
   ],
