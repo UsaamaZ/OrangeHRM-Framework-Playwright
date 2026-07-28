@@ -1,5 +1,5 @@
 import { test, expect } from "../../../src/fixtures/auth.fixture";
-import { LeavePage } from "../../../src/pages/Leave/LeavePage";
+import { LeavePage } from "../../../src/pages/Leave/leave.page";
 import { LeaveFactory } from "../../../src/test-data/leave.factory";
 import { EmployeeApi } from "../../../src/api/services/employee.api";
 import { APIRequestContext } from "@playwright/test";
