@@ -45,7 +45,8 @@ export default defineConfig({
       use: {
         browserName: "chromium",
 
-        viewport: null,
+        // set explicit viewport for login tests
+        viewport: { width: 1280, height: 720 },
 
         launchOptions: {
           headless: process.env.HEADLESS === "true",
@@ -66,7 +67,8 @@ export default defineConfig({
       use: {
         ...devices['Desktop Chrome'],
 
-        viewport: null,
+        // ensure viewport comes from the device descriptor to avoid null/scale issues
+        viewport: devices['Desktop Chrome'].viewport,
 
         launchOptions: {
           headless: process.env.HEADLESS === 'true',
