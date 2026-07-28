@@ -9,8 +9,9 @@ export class LeaveFactory {
         const mm = String(now.getMonth() + 1).padStart(2, '0');
         const yyyy = now.getFullYear();
 
-        const fromDate = `${yyyy}-${mm}-${dd}`;
-        const toDate = `${yyyy}-${mm}-${dd}`;
+        // OrangeHRM uses a yyyy-dd-mm placeholder in the Apply/Assign forms — format accordingly
+        const fromDate = `${yyyy}-${dd}-${mm}`;
+        const toDate = `${yyyy}-${dd}-${mm}`;
 
         return {
             employeeName: `John Automation ${Date.now()}`,
