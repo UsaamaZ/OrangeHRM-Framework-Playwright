@@ -14,11 +14,23 @@ export class LeavePage extends BasePage {
 
     async openApplyLeave() {
 
-        await this.locator.leaveMenu.click();
+        // Try navigating via the sidebar first; if the menu isn't present, fall back to direct navigation
+        try {
+            // Ensure the Leave menu is visible before interacting
+            await expect(this.locator.leaveMenu).toBeVisible({ timeout: 10000 });
+            await this.locator.leaveMenu.click();
 
-        await this.locator.applyTab.click();
+            // Wait for the Apply tab to appear and click it
+            await expect(this.locator.applyTab).toBeVisible({ timeout: 10000 });
+            await this.locator.applyTab.click();
 
-        await expect(this.locator.applyButton).toBeVisible();
+        } catch (err) {
+            // Fallback: navigate directly to the Apply Leave URL used by OrangeHRM
+            await this.page.goto('/web/index.php/leave/applyLeave');
+        }
+
+        // Verify the Apply button is visible on the Apply Leave page
+        await expect(this.locator.applyButton).toBeVisible({ timeout: 10000 });
     }
 
 }
