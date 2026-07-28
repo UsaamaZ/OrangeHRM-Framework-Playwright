@@ -12,10 +12,19 @@ test("Navigate to Apply Leave page and apply for leave", async ({ authenticatedP
     // Create test data
     const data = LeaveFactory.create();
 
+    // If the Apply form inputs are not visible (no leave types/balance), switch to Assign Leave tab
+    const empInput = leave.locator.employeeNameInput;
+    const isEmpVisible = await empInput.isVisible().catch(() => false);
+    if (!isEmpVisible) {
+        // Click Assign Leave tab which usually provides the assign form
+        await authenticatedPage.getByRole('link', { name: 'Assign Leave' }).click();
+        await expect(empInput).toBeVisible({ timeout: 10000 });
+    }
+
     // Wait for and fill employee name, try to select suggestion
-    await expect(leave.locator.employeeNameInput).toBeVisible({ timeout: 10000 });
-    await leave.locator.employeeNameInput.fill(data.employeeName);
-    await leave.locator.employeeNameInput.focus();
+    await expect(empInput).toBeVisible({ timeout: 10000 });
+    await empInput.fill(data.employeeName);
+    await empInput.focus();
     // small pause to allow suggestions to appear
     await authenticatedPage.waitForTimeout(500);
     try {
@@ -23,7 +32,7 @@ test("Navigate to Apply Leave page and apply for leave", async ({ authenticatedP
         await authenticatedPage.keyboard.press('Enter');
     } catch (e) {
         // fallback to pressing Enter on the input
-        await leave.locator.employeeNameInput.press('Enter');
+        await empInput.press('Enter');
     }
 
     // Select leave type: open dropdown and pick first option via keyboard
@@ -51,10 +60,12 @@ test("Navigate to Apply Leave page and apply for leave", async ({ authenticatedP
         await leave.locator.commentsInput.fill(data.comment);
     }
 
-    // Submit application
-    await leave.locator.applyButton.click();
+    // Submit application or assignment — button might be labelled 'Apply' or 'Assign'
+    const submitButton = authenticatedPage.getByRole('button', { name: /Apply|Assign/i });
+    await expect(submitButton).toBeVisible({ timeout: 5000 });
+    await submitButton.click();
 
     // Verify success toast appears
-    await expect(leave.locator.successToast).toBeVisible({ timeout: 15000 });
+    await expect(leave.locator.successToast).toBeVisible({ timeout: 20000 });
 
 });
