@@ -14,11 +14,16 @@ export class LeavePage extends BasePage {
 
     async openApplyLeave() {
 
+        // Ensure the Leave menu is visible before interacting
+        await expect(this.locator.leaveMenu).toBeVisible({ timeout: 10000 });
         await this.locator.leaveMenu.click();
 
+        // Wait for the Apply tab to appear and click it
+        await expect(this.locator.applyTab).toBeVisible({ timeout: 10000 });
         await this.locator.applyTab.click();
 
-        await expect(this.locator.applyButton).toBeVisible();
+        // Verify the Apply button is visible on the Apply Leave page
+        await expect(this.locator.applyButton).toBeVisible({ timeout: 10000 });
     }
 
 }
