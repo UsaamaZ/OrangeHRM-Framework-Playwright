@@ -23,9 +23,7 @@ export class ApiClient {
         body?: unknown
     ): Promise<APIResponse> {
 
-        return await this.request.delete(endpoint, {
-            data: body
-        });
+        return await this.request.delete(endpoint, { data: body });
 
     }
 

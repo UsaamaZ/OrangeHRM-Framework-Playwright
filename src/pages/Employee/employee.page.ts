@@ -61,18 +61,24 @@ export class EmployeePage extends BasePage {
 
     async addEmployee(employee: EmployeeData) {
 
+        console.log("1. Navigate");
         await this.navigateToAddEmployee();
 
+        console.log("2. First Name");
         await this.enterFirstName(employee.firstName);
 
         if (employee.middleName) {
-            await this.enterMiddleName(employee.middleName);
-        }
+         console.log("3. Middle Name");
+         await this.enterMiddleName(employee.middleName);
+     }
 
+        console.log("4. Last Name");
         await this.enterLastName(employee.lastName);
 
+        console.log("5. Click Save");
         await this.clickSave();
 
+        console.log("6. Employee Saved");
     }
 
 //navigate

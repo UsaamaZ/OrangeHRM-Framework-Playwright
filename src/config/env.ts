@@ -16,7 +16,11 @@ const requiredVars = [
     'USERNAME',
     'PASSWORD',
     'AUTH_STATE_PATH',
-    'TESTER'
+    'TESTER',
+    'DEFAULT_TIMEOUT',
+    'HEADLESS',
+    'WORKERS',
+    'RETRIES',
 ];
 
 requiredVars.forEach(variable => {
@@ -35,4 +39,7 @@ export const ENV = {
     tester: process.env.TESTER!,
     authStatePath: process.env.AUTH_STATE_PATH!,
     defaultTimeout: parseInt(process.env.DEFAULT_TIMEOUT ?? "30000", 10),
+    headless: process.env.HEADLESS === "true",
+    workers: parseInt(process.env.WORKERS ?? "1", 10),
+    retries: parseInt(process.env.RETRIES ?? "0", 10),
 };

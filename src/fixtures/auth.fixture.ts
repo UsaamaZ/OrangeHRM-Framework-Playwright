@@ -1,5 +1,6 @@
 import { test as base, expect, Page } from '@playwright/test';
 import path from 'path';
+import { ENV } from '../config/env';
 
 export const test = base.extend<{
     authenticatedPage: Page;
@@ -7,8 +8,9 @@ export const test = base.extend<{
     authenticatedPage: async ({ browser }, use) => {
 
         const context = await browser.newContext({
-            storageState: path.resolve("auth/admin.json"),
+            storageState: path.resolve(ENV.authStatePath),
         });
+
 
         const page = await context.newPage();
 

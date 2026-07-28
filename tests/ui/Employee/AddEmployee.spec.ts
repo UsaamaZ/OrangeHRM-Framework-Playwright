@@ -1,4 +1,5 @@
-import { test } from "../../../src/fixtures/app.fixture";
+
+import { test, expect } from "../../../src/fixtures/app.fixture";
 import { EmployeePage } from "../../../src/pages/Employee/employee.page";
 import { EmployeeFactory } from "../../../src/test-data/employee.factory";
 import { AllureHelper } from "../../../src/utils/allure/allureHelper";
@@ -34,12 +35,21 @@ test.describe("Employee Management", () => {
         employee.firstName,
         employee.middleName,
         employee.lastName
+
       );
+      expect(createdEmployee).toBeDefined();
 
     } finally {
 
       if (createdEmployee) {
         await employeeApi.deleteEmployee(createdEmployee.empNumber);
+        const deletedEmployee = await employeeApi.findEmployeeByName(
+          employee.firstName,
+          employee.middleName,
+          employee.lastName
+        );
+
+        expect(deletedEmployee).toBeUndefined();
       }
 
     }

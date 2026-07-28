@@ -51,5 +51,6 @@ export class EmployeeApi extends ApiClient {
         console.log("Employee deleted successfully.");
 
     }
+    
 
 }

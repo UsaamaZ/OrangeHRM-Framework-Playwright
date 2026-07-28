@@ -14,8 +14,8 @@ export default defineConfig({
   fullyParallel: false,
 
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: 1,
+  retries: ENV.retries,
+  workers: ENV.workers,
 
   timeout: ENV.defaultTimeout,
 
@@ -36,7 +36,7 @@ export default defineConfig({
 
   projects: [
     
-    // Login Tests (No Storage State)
+    // Login tests without storage state
     {
       name: "login",
 
@@ -48,7 +48,7 @@ export default defineConfig({
         viewport: null,
 
         launchOptions: {
-          headless: process.env.HEADLESS === "true",
+          headless: ENV.headless,
           slowMo: 500,
           args: ["--start-maximized"],
         },
@@ -57,19 +57,19 @@ export default defineConfig({
       },
     },
 
-    // Remaining Tests (Uses Storage State)
+    // Remaining tests with storage state
     {
       name: 'chromium',
 
       testIgnore: /tests\/auth\/.*\.spec\.ts/,
 
       use: {
-        ...devices['Desktop Chrome'],
+        // ...devices['Desktop Chrome'],
 
         viewport: null,
 
         launchOptions: {
-          headless: process.env.HEADLESS === 'true',
+          headless: ENV.headless,
           slowMo: 500,
           args: ['--start-maximized'],
         },
