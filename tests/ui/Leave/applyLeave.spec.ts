@@ -1,6 +1,8 @@
 import { test, expect } from "../../../src/fixtures/auth.fixture";
 import { LeavePage } from "../../../src/pages/Leave/LeavePage";
 import { LeaveFactory } from "../../../src/test-data/leave.factory";
+import { EmployeeApi } from "../../../src/api/services/employee.api";
+import { APIRequestContext } from "@playwright/test";
 
 test("Navigate to Apply Leave page and apply for leave", async ({ authenticatedPage }) => {
 
@@ -9,8 +11,14 @@ test("Navigate to Apply Leave page and apply for leave", async ({ authenticatedP
     // Open the Apply Leave page
     await leave.openApplyLeave();
 
-    // Create test data
+    // Create test data (dates/comments)
     const data = LeaveFactory.create();
+
+    // Ensure we have an existing employee from the API; prefer the first employee
+    const employeeApi = new EmployeeApi(authenticatedPage.context().request as APIRequestContext);
+    const employees = await employeeApi.getEmployees();
+    const emp = employees.data && employees.data.length > 0 ? employees.data[0] : undefined;
+    const employeeName = emp ? `${emp.firstName}${emp.middleName ? ' ' + emp.middleName : ''} ${emp.lastName}`.replace(/\s+/g, ' ').trim() : data.employeeName;
 
     // If the Apply form inputs are not visible (no leave types/balance), switch to Assign Leave tab
     const empInput = leave.locator.employeeNameInput;
@@ -21,9 +29,9 @@ test("Navigate to Apply Leave page and apply for leave", async ({ authenticatedP
         await expect(empInput).toBeVisible({ timeout: 10000 });
     }
 
-    // Wait for and fill employee name, try to select suggestion
+    // Wait for and fill employee name with existing employee
     await expect(empInput).toBeVisible({ timeout: 10000 });
-    await empInput.fill(data.employeeName);
+    await empInput.fill(employeeName);
     await empInput.focus();
     // small pause to allow suggestions to appear
     await authenticatedPage.waitForTimeout(500);
